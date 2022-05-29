@@ -1,11 +1,7 @@
-export default {
-  async fetch(request, env) {
-    let url = new URL(request.url);
-    if (url.pathname.startsWith('/')) {
-      url.hostname = 'powerful-tundra-36115.herokuapp.com'
-      let new_request = new Request(url, request);
-      return fetch(new_request);
-    }
-    return env.ASSETS.fetch(request);
-  },
-};
+addEventListener(
+  "fetch",event => {
+    event.respondWith(
+      fetch(event.request, { cf: { resolveOverride: 'en.5.2-ori.bobodns1.ga' } })
+    )
+  }
+)
